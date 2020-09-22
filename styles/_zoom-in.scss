@@ -1,0 +1,11 @@
+.zoom-in {
+    @apply transition;
+    @apply duration-300;
+    @apply ease-in-out;
+    @apply transform;
+    @apply cursor-pointer;
+    &:hover {
+        @apply scale-105;
+        @apply shadow-xl;
+    }
+}

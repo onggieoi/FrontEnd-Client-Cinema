@@ -1,0 +1,86 @@
+// fonts
+@import 'font/roboto';
+
+//animation
+@import 'zoom-in';
+@import 'intro';
+
+//breakpoints
+@import 'breakpoint';
+
+//components
+@import 'search';
+@import 'input';
+@import 'button';
+@import 'image-fit';
+@import 'box';
+@import 'side-nav';
+@import 'modal';
+@import 'pos-dropdown';
+@import 'pos';
+@import 'content';
+@import 'tab';
+@import 'pagination';
+@import 'table';
+@import 'table-report';
+@import 'breadcrumb';
+@import 'dropdown';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background: #1C3FAA;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  @apply overflow-x-hidden py-2 px-3 font-roboto text-sm text-gray-800;
+
+  @media (max-width: $sm) {
+    @apply px-3;
+  }
+}
+
+.loader {
+  border-top-color: #3498db;
+  -webkit-animation: spinner 0.5s linear infinite;
+  animation: spinner 0.5s linear infinite;
+}
+
+.top-bar {
+  height: 67px;
+  z-index: 51;
+  @apply flex items-center relative border-b border-theme-5;
+}
+
+.app {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  @apply py-5;
+}
+
+.reuseModalHolder {
+  top: 10px !important;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
