@@ -2,15 +2,13 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import Router from 'next/router';
-
 import Layout from 'containers/AppLayout';
 
 import '@redq/reuse-modal/lib/index.css';
 import 'styles/app.scss';
 import 'nprogress/nprogress.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());

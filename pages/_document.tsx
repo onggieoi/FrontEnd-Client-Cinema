@@ -11,7 +11,7 @@ export default class CustomDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" href="/favicon.png" sizes="16x16" type="image/png" />
+          <link rel="icon" href="/logo.png" sizes="50x50" type="image/png" />
         </Head>
         <body className='app'>
           <Main />

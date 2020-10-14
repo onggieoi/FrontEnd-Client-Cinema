@@ -1,6 +1,6 @@
 .side-nav {
-    width: 230px;
-    @apply pr-5 pb-16 overflow-x-hidden;
+    width: 150px;
+    @apply pr-5 pb-16 overflow-x-hidden -mt-2;
 
     @media (max-width: $xl) {
         width: 85px;
@@ -29,7 +29,11 @@
     }
 
     .side-nav__devider {
-        @apply w-full h-px bg-theme-3 z-10 relative;
+        @apply w-full h-px bg-theme-100 z-10 relative;
+    }
+
+    .side-nav__devider_white {
+        @apply w-full h-px bg-white z-10 relative;
     }
 
     .side-menu {
@@ -146,7 +150,7 @@
                     }
 
                     .side-menu__icon {
-                        @apply text-theme-3;
+                        @apply text-theme-100;
 
                         &:before {
                             content: "";
@@ -156,7 +160,7 @@
                     }
 
                     .side-menu__title {
-                        @apply text-gray-800 font-medium;
+                        @apply font-medium text-theme-100;
                     }
                 }
 
@@ -172,7 +176,7 @@
                 }
 
                 &:hover:not(.side-menu--active):not(.side-menu--open) .side-menu__icon:before {
-                    @apply bg-theme-4;
+                    @apply bg-theme-200;
                 }
             }
         }
