@@ -1,7 +1,8 @@
 .content {
     border-radius: 30px;
-    padding: 0px 22px;
-    @apply min-h-screen bg-theme-2 flex-1 pb-10;
+    padding: 0 1rem;
+    height: 95vh;
+    @apply bg-theme-2 flex-1 pb-10 overflow-y-scroll overflow-x-hidden;
 
     @media (max-width: $md) {
         @apply px-4 max-w-full;

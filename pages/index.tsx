@@ -2,14 +2,14 @@ import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
-import CustomersPage from 'containers/Customers';
+import HomePage from 'containers/HomePage';
 
 const Home: NextPage = () => (
   <>
     <Head>
-      <title>Customers</title>
+      <title>Home</title>
     </Head>
-    <CustomersPage />
+    <HomePage />
   </>
 );
 

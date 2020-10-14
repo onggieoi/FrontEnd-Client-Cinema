@@ -2,9 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
-  Users,
   Trello,
   LogOut,
+  Home
 } from 'react-feather';
 
 import { setLocalState } from 'helper/localStorage';
@@ -34,16 +34,16 @@ const SideMenu: React.FC = () => {
         <li className=' cursor-pointer'>
           <Link href='/'>
             <div className={`side-menu ${activeClass('/')}`}>
-              <div className="side-menu__icon"> <Users /> </div>
-              <div className="side-menu__title"> Customers </div>
+              <div className="side-menu__icon"> <Home /> </div>
+              <div className="side-menu__title"> Home </div>
             </div>
           </Link>
         </li>
         <li className=' cursor-pointer'>
-          <Link href='/profile'>
-            <div className={`side-menu ${activeClass('/check')}`}>
+          <Link href='/pos'>
+            <div className={`side-menu ${activeClass('/pos')}`}>
               <div className="side-menu__icon"> <Trello /> </div>
-              <div className="side-menu__title"> Profile </div>
+              <div className="side-menu__title"> Point of Sales </div>
             </div>
           </Link>
         </li>
