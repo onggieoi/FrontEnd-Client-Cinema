@@ -1,5 +1,4 @@
 import React from 'react';
-import Slider from 'components/silder';
 
 const HomePage = () => {
   console.log('Home');
@@ -14,7 +13,6 @@ const HomePage = () => {
 
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 mt-5 mx-2">
-          <Slider />
         </div>
       </div>
     </>

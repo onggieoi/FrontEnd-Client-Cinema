@@ -7,7 +7,6 @@ import Layout from 'containers/AppLayout';
 import '@redq/reuse-modal/lib/index.css';
 import 'styles/app.scss';
 import 'nprogress/nprogress.css';
-import 'react-datepicker/dist/react-datepicker.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 Router.events.on('routeChangeStart', () => NProgress.start());
