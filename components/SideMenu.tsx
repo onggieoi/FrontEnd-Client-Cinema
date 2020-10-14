@@ -25,15 +25,16 @@ const SideMenu: React.FC = () => {
   };
 
   return (
-    <nav className='side-nav h-full relative' style={{ height: '95vh' }}>
-      <a className=" flex items-center pl-5 pt-4 cursor-pointer" >
-        <img alt="Midone Tailwind HTML Admin Template" style={{ maxHeight: '100px' }} src="/logo_dalat.png"></img>
+    <nav className='side-nav h-full relative' style={ { height: '95vh' } }>
+      <a className=" flex-col items-center cursor-pointer" >
+        <img alt="unknown" className='w-full' src="/logo.png" />
+        <p className='text-center text-theme-200 font-bold text-lg'>Point of Sales</p>
       </a>
       <div className='side-nav__devider my-6'></div>
       <ul>
         <li className=' cursor-pointer'>
           <Link href='/'>
-            <div className={`side-menu ${activeClass('/')}`}>
+            <div className={ `side-menu ${activeClass('/')}` }>
               <div className="side-menu__icon"> <Users /> </div>
               <div className="side-menu__title"> Customers </div>
             </div>
@@ -41,7 +42,7 @@ const SideMenu: React.FC = () => {
         </li>
         <li className=' cursor-pointer'>
           <Link href='/profile'>
-            <div className={`side-menu ${activeClass('/check')}`}>
+            <div className={ `side-menu ${activeClass('/check')}` }>
               <div className="side-menu__icon"> <Trello /> </div>
               <div className="side-menu__title"> Profile </div>
             </div>
@@ -49,10 +50,10 @@ const SideMenu: React.FC = () => {
         </li>
       </ul>
 
-      {/* Log out */}
-      <div className='absolute bottom-0 w-full'>
-        <div className='side-nav__devider my-6'></div>
-        <button onClick={logout}>
+      {/* Log out */ }
+      <div className='absolute bottom-0 w-11/12'>
+        <div className='side-nav__devider_white my-6'></div>
+        <button onClick={ logout }>
           <div className='side-menu'>
             <div className="side-menu__icon"> <LogOut /> </div>
             <div className="side-menu__title"> Đăng Xuất </div>

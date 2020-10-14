@@ -31,7 +31,8 @@
 @tailwind utilities;
 
 html {
-  background: #1C3FAA;
+  background: rgb(252, 210, 250);
+  background: linear-gradient(0deg, rgba(252, 210, 250, 1) 0%, rgba(249, 123, 242, 1) 30%, rgba(247, 229, 245, 1) 100%);
 }
 
 body {
