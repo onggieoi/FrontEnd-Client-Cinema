@@ -1,18 +1,23 @@
 import React from 'react';
 
 import SideMenu from 'components/SideMenu';
-import Container from 'components/Container';
 import Link from 'next/link';
 
 const Layout: React.FC<any> = ({ children }) => (
   <div className='flex'>
-    <SideMenu />
-    <Container>
 
-      { children }
+    {/* side nav */ }
+    <SideMenu />
+    <div className='content'>
+
+      {/* content */ }
+      <div style={ { minHeight: '60vh' } }>
+        { children }
+      </div>
 
       <div className='border-t border-theme-5 my-5'></div>
 
+      {/* footer */ }
       <div className="flex mx-auto items-center" style={ { maxWidth: '1200px' } }>
         <div className='w-64 cursor-pointer'>
           <Link href='/'>
@@ -35,7 +40,7 @@ const Layout: React.FC<any> = ({ children }) => (
         </div>
       </div>
       <div className='text-center font-bold'>COPYRIGHT 2020 UNKNOWN. All RIGHTS RESERVED .</div>
-    </Container>
+    </div>
   </div>
 );
 

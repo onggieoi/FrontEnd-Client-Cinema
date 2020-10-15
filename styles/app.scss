@@ -50,6 +50,13 @@ body {
   animation: spinner 0.5s linear infinite;
 }
 
+.text-gradient {
+  font-family: 'Sansita Swashed', cursive;
+  background: -webkit-linear-gradient(#fcd2fa, #f741ed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .top-bar {
   height: 67px;
   z-index: 51;

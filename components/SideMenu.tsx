@@ -2,9 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
-  Trello,
   LogOut,
-  Home
+  Home,
+  Activity,
+  Film,
 } from 'react-feather';
 
 import { setLocalState } from 'helper/localStorage';
@@ -34,17 +35,25 @@ const SideMenu: React.FC = () => {
       <ul>
         <li className=' cursor-pointer'>
           <Link href='/'>
-            <div className={`side-menu ${activeClass('/')}`}>
+            <div className={ `side-menu ${activeClass('/')}` }>
               <div className="side-menu__icon"> <Home /> </div>
               <div className="side-menu__title"> Home </div>
             </div>
           </Link>
         </li>
-        <li className=' cursor-pointer'>
-          <Link href='/pos'>
-            <div className={`side-menu ${activeClass('/pos')}`}>
-              <div className="side-menu__icon"> <Trello /> </div>
-              <div className="side-menu__title"> Point of Sales </div>
+        <li className='cursor-pointer'>
+          <Link href='/showing'>
+            <div className={ `side-menu ${activeClass('/showing')}` }>
+              <div className="side-menu__icon"> <Film /> </div>
+              <div className="side-menu__title"> Showing now </div>
+            </div>
+          </Link>
+        </li>
+        <li className='cursor-pointer'>
+          <Link href='/comming'>
+            <div className={ `side-menu ${activeClass('/comming')}` }>
+              <div className="side-menu__icon"> <Activity /> </div>
+              <div className="side-menu__title"> Comming soon </div>
             </div>
           </Link>
         </li>
