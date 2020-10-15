@@ -6,8 +6,13 @@ import Layout from 'containers/AppLayout';
 
 import '@redq/reuse-modal/lib/index.css';
 import 'styles/app.scss';
-import 'nprogress/nprogress.css';
+// import 'nprogress/nprogress.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+NProgress.configure({
+  minimum: 0.1,
+
+});
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());

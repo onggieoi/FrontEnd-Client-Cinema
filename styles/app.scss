@@ -25,6 +25,7 @@
 @import 'table-report';
 @import 'breadcrumb';
 @import 'dropdown';
+@import 'custom_nprocess';
 
 @tailwind base;
 @tailwind components;
@@ -53,7 +54,7 @@ body {
 .top-bar {
   height: 67px;
   z-index: 51;
-  @apply flex items-center relative border-b border-theme-5;
+  @apply flex items-center relative border-b border-theme-50;
 }
 
 .app {

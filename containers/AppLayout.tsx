@@ -9,11 +9,11 @@ const Layout: React.FC<any> = ({ children }) => (
     <SideMenu />
     <Container>
 
-      { children }
+      {children}
 
-      <div className='border-t border-theme-5 my-5'></div>
+      <div className='border-t border-theme-50 my-5'></div>
 
-      <div className="flex mx-auto items-center" style={ { maxWidth: '1200px' } }>
+      <div className="flex mx-auto items-center" style={{ maxWidth: '1200px' }}>
         <div className='w-64 cursor-pointer'>
           <Link href='/'>
             <img src="/logo.png" alt="unknown" />
