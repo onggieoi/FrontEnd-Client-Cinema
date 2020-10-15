@@ -8,9 +8,9 @@ const DetailPage = ({ movie }) => {
   return (
     <>
       <Head>
-        <title>UNKNOWN | Cinema</title>
+        <title>UNKNOWN | {movie.title}</title>
       </Head>
-      <DetailMovie data={ movie } />
+      <DetailMovie data={movie} />
     </>
   );
 }
