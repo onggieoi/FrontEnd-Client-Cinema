@@ -77,3 +77,13 @@ export const Cinema = [
   'UNKNOWN Sài Gòn',
   'UNKNOWN BMT'
 ];
+
+export const Session = [
+  { id: '1', sesison: '15 PM' },
+  { id: '2', sesison: '17 PM' },
+  { id: '3', sesison: '19 PM' },
+  { id: '4', sesison: '21 PM' },
+  { id: '5', sesison: '23 PM' },
+  { id: '6', sesison: '0 AM' },
+  { id: '7', sesison: '1 AM' },
+]

@@ -26,16 +26,18 @@ const SideMenu: React.FC = () => {
   };
 
   return (
-    <nav className='side-nav h-full relative' style={ { height: '95vh' } }>
-      <a className=" flex-col items-center cursor-pointer" >
-        <img alt="unknown" className='w-full' src="/logo.png" />
-        <p className='text-center text-theme-200 font-bold text-lg'>Point of Sales</p>
-      </a>
+    <nav className='side-nav h-full relative' style={{ height: '95vh' }}>
+      <Link href='/'>
+        <div className=" flex-col items-center cursor-pointer" >
+          <img alt="unknown" className='w-full' src="/logo.png" />
+          <p className='text-center text-theme-200 font-bold text-lg'>Point of Sales</p>
+        </div>
+      </Link>
       <div className='side-nav__devider my-6'></div>
       <ul>
         <li className=' cursor-pointer'>
           <Link href='/'>
-            <div className={ `side-menu ${activeClass('/')}` }>
+            <div className={`side-menu ${activeClass('/')}`}>
               <div className="side-menu__icon"> <Home /> </div>
               <div className="side-menu__title"> Home </div>
             </div>
@@ -43,7 +45,7 @@ const SideMenu: React.FC = () => {
         </li>
         <li className='cursor-pointer'>
           <Link href='/showing'>
-            <div className={ `side-menu ${activeClass('/showing')}` }>
+            <div className={`side-menu ${activeClass('/showing')}`}>
               <div className="side-menu__icon"> <Film /> </div>
               <div className="side-menu__title"> Showing now </div>
             </div>
@@ -51,7 +53,7 @@ const SideMenu: React.FC = () => {
         </li>
         <li className='cursor-pointer'>
           <Link href='/comming'>
-            <div className={ `side-menu ${activeClass('/comming')}` }>
+            <div className={`side-menu ${activeClass('/comming')}`}>
               <div className="side-menu__icon"> <Activity /> </div>
               <div className="side-menu__title"> Comming soon </div>
             </div>
@@ -59,10 +61,10 @@ const SideMenu: React.FC = () => {
         </li>
       </ul>
 
-      {/* Log out */ }
+      {/* Log out */}
       <div className='absolute bottom-0 w-11/12'>
         <div className='side-nav__devider_white my-6'></div>
-        <button onClick={ logout }>
+        <button onClick={logout}>
           <div className='side-menu'>
             <div className="side-menu__icon"> <LogOut /> </div>
             <div className="side-menu__title"> Đăng Xuất </div>
