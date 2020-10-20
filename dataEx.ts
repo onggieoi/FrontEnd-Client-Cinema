@@ -1,4 +1,4 @@
-import { CardData } from 'interfaces';
+import { CardData, Possition } from 'interfaces';
 
 export const dataShowing: CardData[] = [
   {
@@ -86,4 +86,19 @@ export const Session = [
   { id: '5', sesison: '23 PM' },
   { id: '6', sesison: '0 AM' },
   { id: '7', sesison: '1 AM' },
+];
+
+export const PossitionEx: Possition[] = [
+  { id: '1', name: 'A1', status: false },
+  { id: '2', name: 'A2', status: false },
+  { id: '3', name: 'A3', status: false },
+  { id: '4', name: 'A4', status: true },
+  { id: '5', name: 'A5', status: false },
+  { id: '6', name: 'B1', status: false },
+  { id: '7', name: 'B2', status: true },
+  { id: '8', name: 'B3', status: false },
+  { id: '9', name: 'B4', status: false },
+  { id: '10', name: 'B5', status: true },
+  { id: '11', name: 'C1', status: false },
+  { id: '12', name: 'C2', status: false },
 ]

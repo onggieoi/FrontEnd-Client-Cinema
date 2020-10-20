@@ -9,3 +9,9 @@ export interface CardData {
   subTitle?: string;
   images?: string[];
 }
+
+export interface Possition {
+  id: string;
+  name: string;
+  status: boolean;
+}

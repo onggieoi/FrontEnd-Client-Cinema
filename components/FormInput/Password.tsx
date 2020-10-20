@@ -47,7 +47,7 @@ const PasswordFiled: React.FC<InputFieldProps> = (props) => {
 
   return (
     <div className='mb-3'>
-      <label>{props.label}: </label>
+      <label className='ml-2'>{props.label}: </label>
       <input className={`input w-full border mt-2 border-${state.color}`} {...field} {...props} type='password' />
       {
         touched && (

@@ -5,18 +5,12 @@ import { getLocalState } from 'helper/localStorage';
 
 function reducer(state: any, action: any) {
   switch (action.type) {
-    case 'SIGNIN':
+    case 'LOGIN':
       return {
-        ...state,
-      };
-    case 'SIGNIN_SUCCESS':
-      return {
-        ...state,
         isAuthenticated: true,
       };
-    case 'SIGN_OUT':
+    case 'LOG_OUT':
       return {
-        ...state,
         isAuthenticated: false,
       };
     default:
@@ -24,7 +18,7 @@ function reducer(state: any, action: any) {
   }
 }
 
-const AuthProvider = (props: any) => {
+const AuthProvider = ({ children }) => {
   const [authState, authDispatch] = useReducer(
     reducer,
     !!getLocalState('token'),
@@ -37,7 +31,7 @@ const AuthProvider = (props: any) => {
         authDispatch,
       }}
     >
-      {props.children}
+      {children}
     </AuthContext.Provider>
   );
 };

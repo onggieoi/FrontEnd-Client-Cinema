@@ -1,12 +1,11 @@
 import React from 'react';
+import Modal from 'components/Modal';
 
 const Test = () => {
-  console.log('Muder fucker');
 
   return (
     <>
-      <div className='bg-pink-400 h-full'>Hello world</div>
-      <div className='bg-pink-400 h-full'>Hello world</div>
+      <button className='hover:bg-theme-100'>blabal</button>
     </>
   );
 }

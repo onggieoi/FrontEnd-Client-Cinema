@@ -1,0 +1,13 @@
+.transitionComponent {
+  width: 1000px;
+  transition: all 0.4s ease-in-out;
+  @apply p-10 absolute top-0 left-0;
+}
+
+.toLeft {
+  left: -1000px;
+}
+
+.toRight {
+  left: 1000px;
+}

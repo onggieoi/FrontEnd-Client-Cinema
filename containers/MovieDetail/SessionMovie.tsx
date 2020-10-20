@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Calendar } from 'react-feather';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 
 import { Cinema, Session } from 'dataEx';
+import { ModalContext } from 'contexts/Modal';
 
 const SessionMovie = () => {
   const [date, setDate] = useState(new Date);
   const [cinema, setCinema] = useState('');
   const [session, setSession] = useState('');
+  const { setOpen, setProps } = useContext(ModalContext);
 
   const activeSessionStyle = (id: string) => {
     if (id === session) return 'border w-full p-5 shadow-md my-2 rounded-md bg-theme-100 text-white font-bold';
@@ -16,7 +18,9 @@ const SessionMovie = () => {
   };
 
   const handleSubmit = () => {
-    console.log({ session, cinema, dateChoose: `${date.getDate()}/${date.getUTCMonth() + 1}/${date.getFullYear()}` });
+    setProps({ session, cinema, dateChoose: `${date.getDate()}/${date.getUTCMonth() + 1}/${date.getFullYear()}` });
+    setOpen(true);
+    // console.log({ session, cinema, dateChoose: `${date.getDate()}/${date.getUTCMonth() + 1}/${date.getFullYear()}` });
   };
 
   const options = Cinema.map((item) => ({ label: item, value: item }));
@@ -62,6 +66,7 @@ const SessionMovie = () => {
           Buy Ticket
         </button>
       </div>
+
     </>
   );
 };

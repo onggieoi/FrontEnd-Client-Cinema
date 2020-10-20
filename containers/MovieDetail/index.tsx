@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { Clock } from 'react-feather';
 
 import SessionMovie from 'containers/MovieDetail/SessionMovie';
 import { CardData } from 'interfaces';
+import Modal from 'components/Modal';
+import Payment from 'containers/Modal/Payment';
+import { ModalContext } from 'contexts/Modal';
 
 interface Props {
   data: CardData;
@@ -11,7 +14,7 @@ interface Props {
 
 const DetailMovie: React.FC<Props> = ({ data }) => {
   const { title, images } = data;
-
+  const { isOpen, onClose, props } = useContext(ModalContext);
 
   return (
     <>
@@ -60,7 +63,8 @@ const DetailMovie: React.FC<Props> = ({ data }) => {
             <div>Diễn viên:  Oksana Akinshina, Pyotr Fyodorov</div>
             <div>Thể loại:  Kinh Dị, Giả Tưởng</div>
             <div>Đạo diễn:  Egor Abramenko</div>
-            <div>Quốc gia:  Nga Ngày:  15/10/2020</div>
+            <div>Quốc gia:  Nga</div>
+            <div>Ngày:  15/10/2020</div>
           </div>
         </div>
 
@@ -70,6 +74,8 @@ const DetailMovie: React.FC<Props> = ({ data }) => {
         </div>
 
       </div>
+
+      <Modal isOpen={isOpen} onClose={() => onClose()} Component={Payment} props={props} />
     </>
   );
 };

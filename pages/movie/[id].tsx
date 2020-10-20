@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 
 import DetailMovie from 'containers/MovieDetail';
+import { ModalProvider } from 'contexts/Modal';
 import { data } from 'dataEx';
 
 const DetailPage = ({ movie }) => {
@@ -10,7 +11,9 @@ const DetailPage = ({ movie }) => {
       <Head>
         <title>UNKNOWN | {movie.title}</title>
       </Head>
-      <DetailMovie data={movie} />
+      <ModalProvider>
+        <DetailMovie data={movie} />
+      </ModalProvider>
     </>
   );
 }

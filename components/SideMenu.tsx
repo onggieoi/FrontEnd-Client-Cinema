@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState, Component } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
@@ -6,16 +6,22 @@ import {
   Home,
   Activity,
   Film,
+  LogIn,
 } from 'react-feather';
 
 import { setLocalState } from 'helper/localStorage';
+import { AuthContext } from 'contexts/auth/auth.context';
+import AuthModal from 'containers/Modal/Auth';
+import Modal from 'components/Modal';
 
 const SideMenu: React.FC = () => {
   const Router = useRouter();
+  const { authState, authDispatch } = useContext(AuthContext);
+  const [isOpen, setOpen] = useState(false);
 
-  const logout = () => {
+  const handleLogout = () => {
+    authDispatch({ type: 'LOGOUT' });
     setLocalState('token', '');
-    Router.push('/login');
   };
 
   const activeClass = (page: string) => {
@@ -23,6 +29,10 @@ const SideMenu: React.FC = () => {
       return 'side-menu--active';
     }
     return '';
+  };
+
+  const handleLogin = () => {
+    setOpen(true);
   };
 
   return (
@@ -33,7 +43,9 @@ const SideMenu: React.FC = () => {
           <p className='text-center text-theme-200 font-bold text-lg'>Point of Sales</p>
         </div>
       </Link>
+
       <div className='side-nav__devider my-6'></div>
+
       <ul>
         <li className=' cursor-pointer'>
           <Link href='/'>
@@ -61,16 +73,35 @@ const SideMenu: React.FC = () => {
         </li>
       </ul>
 
-      {/* Log out */}
+      {/* bottom bar */}
       <div className='absolute bottom-0 w-11/12'>
+
         <div className='side-nav__devider_white my-6'></div>
-        <button onClick={logout}>
-          <div className='side-menu'>
-            <div className="side-menu__icon"> <LogOut /> </div>
-            <div className="side-menu__title"> Đăng Xuất </div>
-          </div>
-        </button>
+
+        {
+          authState ? (
+            <button onClick={handleLogout} className='focus:outline-none'>
+              <div className='side-menu'>
+                <div className="side-menu__icon">
+                  <LogOut />
+                </div>
+                <div className="side-menu__title"> Logout </div>
+              </div>
+            </button>
+          ) : (
+              <button onClick={handleLogin} className='focus:outline-none'>
+                <div className='side-menu'>
+                  <div className="side-menu__icon">
+                    <LogIn />
+                  </div>
+                  <div className="side-menu__title"> Login </div>
+                </div>
+              </button>
+            )
+        }
+
       </div>
+      <Modal isOpen={isOpen} onClose={() => setOpen(false)} Component={AuthModal} />
     </nav >
   );
 };

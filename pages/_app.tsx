@@ -2,10 +2,11 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import Router from 'next/router';
+
 import Layout from 'containers/AppLayout';
+import AuthProvider from 'contexts/auth/auth.provider';
 
 import 'styles/app.scss';
-import '@redq/reuse-modal/lib/index.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -20,9 +21,11 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AuthProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </AuthProvider>
   );
 }
 export default MyApp;

@@ -16,8 +16,8 @@ const RadioField: React.FC<InputFieldProps> = (props) => {
       <div className="flex flex-col sm:flex-row">
         {
           props.data.map((item) => (
-            <div key={item} className="flex items-center text-gray-700 mr-3">
-              <input {...field} {...props} type="radio" className="input border mr-1"
+            <div key={item} className="flex items-center text-gray-700 mr-3 ">
+              <input {...field} {...props} type="radio" className="input border mr-1 "
                 id={item} value={item} checked={value === item} />
               <label className="cursor-pointer select-none" htmlFor={item}>
                 {item}

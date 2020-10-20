@@ -19,9 +19,9 @@
         }
         .pagination__link {
             min-width: 40px;
-            @apply button font-normal flex items-center justify-center border-transparent text-gray-800 mr-2;
+            @apply font-normal flex items-center justify-center border-transparent text-gray-800 mr-2;
             &.pagination__link--active {
-                @apply box font-medium bg-theme-3 text-white;
+                @apply font-medium bg-theme-3 text-white;
             }
         }
     }
