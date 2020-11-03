@@ -1,0 +1,3 @@
+mutation BuyTicket ($options: BuyTicketInput!) {
+  buyTicket(options: $options)
+}

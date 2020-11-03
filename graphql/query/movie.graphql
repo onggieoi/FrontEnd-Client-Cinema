@@ -1,0 +1,24 @@
+query Movie($id: Int!) {
+  movie(id: $id) {
+    movie {
+      id
+      name
+      description
+      type
+      director
+      producer
+      country
+      duration
+      thumbnail
+      isShow
+      images {
+        id
+        url
+      }
+    }
+    error {
+      field
+      message
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { CardData, Possition } from 'interfaces';
 
 export const dataShowing: CardData[] = [
   {
-    id: '1', title: 'SPUTNIK', image: 'https://galaxycine.vn/media/2020/10/12/450x300-quai-vat_1602488194219.jpg', subTitle: 'Quái Vật Săn Đêm',
+    id: '1', title: 'SPUTNIK', image: 'https://www.cgv.vn/media/catalog/product/cache/3/image/1800x/71252117777b696995f01934522c402d/r/s/rsz_sputnik_-_vietnamese_poster_final_1.jpg', subTitle: 'Quái Vật Săn Đêm',
     images: [
       'https://m.media-amazon.com/images/M/MV5BOTI4ZmE4MDUtMTFjOS00NWNkLThkMzgtOTdmYzY4ODhmYTI0XkEyXkFqcGdeQXVyMTE1MzI2NzIz._V1_.jpg',
       'https://i2.wp.com/bloody-disgusting.com/wp-content/uploads/2020/05/sputnik-movie.png',

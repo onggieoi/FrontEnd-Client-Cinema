@@ -1,0 +1,15 @@
+query MeCustomer {
+  meCustomer {
+    customer {
+      id
+      username
+      fullname
+      creditCardNumber
+      csv
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

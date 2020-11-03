@@ -2,12 +2,10 @@ import React, { useContext } from 'react';
 
 interface ModalProps {
   isOpen: boolean;
-  Component: React.FC<any>;
   onClose: Function;
-  props?: any;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, Component, props }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   return isOpen ? (
     <div className='absolute top-0 left-0'>
@@ -17,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, Component, props }) => {
       >
         <div className="relative my-6 mx-auto ">
           {/* content */}
-          <Component {...props} />
+          {children}
         </div>
       </div>
 

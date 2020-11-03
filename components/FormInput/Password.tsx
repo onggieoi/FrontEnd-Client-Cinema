@@ -4,6 +4,7 @@ import { useField } from 'formik';
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   name: string;
+  isValid?: boolean;
 };
 
 const PasswordFiled: React.FC<InputFieldProps> = (props) => {
@@ -15,7 +16,7 @@ const PasswordFiled: React.FC<InputFieldProps> = (props) => {
   });
 
   useEffect(() => {
-    if (value) {
+    if (value && props.isValid) {
       if (value.length < 6) {
         setState({
           color: 'theme-12',
@@ -39,7 +40,7 @@ const PasswordFiled: React.FC<InputFieldProps> = (props) => {
   }, [value]);
 
   const col = (index: number) => {
-    if (index <= state.col) {
+    if (index <= state.col && props.isValid) {
       return `${state.color}`;
     }
     return 'gray-200';
@@ -50,7 +51,7 @@ const PasswordFiled: React.FC<InputFieldProps> = (props) => {
       <label className='ml-2'>{props.label}: </label>
       <input className={`input w-full border mt-2 border-${state.color}`} {...field} {...props} type='password' />
       {
-        touched && (
+        (touched && props.isValid) && (
           <>
             <div className="w-full grid grid-cols-12 gap-4 h-1 mt-3">
               <div className={`col-span-3 h-full rounded bg-${col(1)}`}></div>

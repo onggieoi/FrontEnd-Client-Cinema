@@ -1,4 +1,4 @@
-import React, { useContext, useState, Component } from 'react';
+import React, { useState, useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
@@ -9,20 +9,15 @@ import {
   LogIn,
 } from 'react-feather';
 
-import { setLocalState } from 'helper/localStorage';
-import { AuthContext } from 'contexts/auth/auth.context';
 import AuthModal from 'containers/Modal/Auth';
 import Modal from 'components/Modal';
+import { AuthContext } from 'contexts/Auth';
+import { ModalContext } from 'contexts/Modal';
 
 const SideMenu: React.FC = () => {
   const Router = useRouter();
-  const { authState, authDispatch } = useContext(AuthContext);
-  const [isOpen, setOpen] = useState(false);
-
-  const handleLogout = () => {
-    authDispatch({ type: 'LOGOUT' });
-    setLocalState('token', '');
-  };
+  const { isOpen, onOpen, onClose } = useContext(ModalContext);
+  const { logout, isAuth } = useContext(AuthContext);
 
   const activeClass = (page: string) => {
     if (page === Router.pathname) {
@@ -32,7 +27,7 @@ const SideMenu: React.FC = () => {
   };
 
   const handleLogin = () => {
-    setOpen(true);
+    onOpen();
   };
 
   return (
@@ -79,8 +74,8 @@ const SideMenu: React.FC = () => {
         <div className='side-nav__devider_white my-6'></div>
 
         {
-          authState ? (
-            <button onClick={handleLogout} className='focus:outline-none'>
+          isAuth ? (
+            <button onClick={async () => await logout()} className='focus:outline-none'>
               <div className='side-menu'>
                 <div className="side-menu__icon">
                   <LogOut />
@@ -101,7 +96,9 @@ const SideMenu: React.FC = () => {
         }
 
       </div>
-      <Modal isOpen={isOpen} onClose={() => setOpen(false)} Component={AuthModal} />
+      <Modal isOpen={isOpen} onClose={() => onClose()}>
+        <AuthModal />
+      </Modal>
     </nav >
   );
 };

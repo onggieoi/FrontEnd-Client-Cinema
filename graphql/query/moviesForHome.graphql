@@ -1,0 +1,14 @@
+query MoviesForHome {
+  moviesForHome {
+    moviesShowing {
+      id
+      name
+      thumbnail
+    }
+    moviesComming {
+      id
+      name
+      thumbnail
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query Session($options: InputGetTime!) {
+  getTimesSession (options: $options) {
+    id
+    time
+    price
+    theater {
+      id
+      name
+    }
+  }
+}

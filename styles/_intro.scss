@@ -1,7 +1,7 @@
 * {
-    @for $i from 1 through 50 {
+    @for $i from 1 through 10 {
         > .intro-x:nth-child(#{$i}) {
-            z-index: #{50 - $i};
+            // z-index: #{10 - $i};
             @apply opacity-0 relative;
             transform: translateX(50px);
             animation: 0.4s intro-x-animation ease-in-out .33333s;
@@ -9,7 +9,7 @@
             animation-delay: #{$i * 0.1}s;
         }
         > .-intro-x:nth-child(#{$i}) {
-            z-index: #{50 - $i};
+            // z-index: #{10 - $i};
             @apply opacity-0 relative;
             transform: translateX(-50px);
             animation: 0.4s intro-x-animation ease-in-out .33333s;
@@ -17,7 +17,7 @@
             animation-delay: #{$i * 0.1}s;
         }
         > .intro-y:nth-child(#{$i}) {
-            z-index: #{50 - $i};
+            // z-index: #{10 - $i};
             @apply opacity-0 relative;
             transform: translateY(50px);
             animation: 0.4s intro-y-animation ease-in-out .33333s;
@@ -25,7 +25,7 @@
             animation-delay: #{$i * 0.1}s;
         }
         > .-intro-y:nth-child(#{$i}) {
-            z-index: #{50 - $i};
+            // z-index: #{10 - $i};
             @apply opacity-0 relative;
             transform: translateY(-50px);
             animation: 0.4s intro-y-animation ease-in-out .33333s;

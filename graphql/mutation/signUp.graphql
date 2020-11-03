@@ -1,0 +1,15 @@
+mutation CustomerSignUp($data: SignInCustomerInput!) {
+  customerSignUp(data: $data) {
+    customer {
+      id
+      username
+      fullname
+      creditCardNumber
+      csv
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

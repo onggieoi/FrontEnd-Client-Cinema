@@ -3,25 +3,33 @@ import { Carousel } from 'react-responsive-carousel';
 import { Clock } from 'react-feather';
 
 import SessionMovie from 'containers/MovieDetail/SessionMovie';
-import { CardData } from 'interfaces';
 import Modal from 'components/Modal';
-import Payment from 'containers/Modal/Payment';
 import { ModalContext } from 'contexts/Modal';
+import { Movie, Maybe, Image } from 'graphql/generated';
+import Payment from 'containers/Modal/Payment';
+import AuthModal from 'containers/Modal/Auth';
 
-interface Props {
-  data: CardData;
+type Props = {
+  movie: {
+    __typename?: "Movie" | undefined;
+  } & Pick<Movie, "id" | "name" | "description" | "type" | "director" | "producer" | "country" | "duration" | "thumbnail" | "isShow">
+  & {
+    images?: Maybe<Array<(
+      { __typename?: 'Image' }
+      & Pick<Image, 'id' | 'url'>
+    )>>
+  }
 }
 
-const DetailMovie: React.FC<Props> = ({ data }) => {
-  const { title, images } = data;
-  const { isOpen, onClose, props } = useContext(ModalContext);
+const DetailMovie: React.FC<Props> = ({ movie }) => {
+  const { isOpen, onClose, props, component } = useContext(ModalContext);
 
   return (
     <>
       {/* Header */}
       <div className='top-bar my-5'>
         <div className="-intro-x text-gradient font-bold text-2xl text-center w-full block">
-          {title}
+          {movie.name}
         </div>
       </div>
 
@@ -35,9 +43,9 @@ const DetailMovie: React.FC<Props> = ({ data }) => {
             autoPlay
           >
             {
-              images?.map((imgSrc) => (
-                <div key={imgSrc} className='object-center w-full'>
-                  <img src={imgSrc} />
+              movie.images?.map(({ id, url }) => (
+                <div key={id} className='object-center w-full'>
+                  <img src={url} />
                 </div>
               ))
             }
@@ -48,34 +56,52 @@ const DetailMovie: React.FC<Props> = ({ data }) => {
         <div className='col-span-5 intro-x mx-auto'>
 
           <div className='mb-3 font-bold'>
-            <div className='text-6xl -mt-4'>SPUTNIK</div>
-            <div className='text-2xl text-gray-600'>QUÁI VẬT SĂN ĐÊM</div>
+            <div className='text-6xl -mt-4'>{movie.name}</div>
             <div className='flex items-center mt-2'>
               <Clock />
               <div className='ml-2 text-lg'>
-                114 phút
+                {movie.duration} minutes
               </div>
             </div>
           </div>
 
           <div className='text-xl font-bold'>
-            <div>Nhà sản xuất:  Art Pictures Studio</div>
-            <div>Diễn viên:  Oksana Akinshina, Pyotr Fyodorov</div>
-            <div>Thể loại:  Kinh Dị, Giả Tưởng</div>
-            <div>Đạo diễn:  Egor Abramenko</div>
-            <div>Quốc gia:  Nga</div>
-            <div>Ngày:  15/10/2020</div>
+            <div>Producer:
+              <span className='text-gray-600'> {movie.producer}</span>
+            </div>
+            <div>Genre:
+              <span className='text-gray-600'> {movie.type}</span>
+            </div>
+            <div>Director:
+              <span className='text-gray-600'> {movie.director}</span>
+            </div>
+            <div>Language:
+              <span className='text-gray-600'> {movie.country}</span>
+            </div>
+            <div>Status:
+              <span className='text-gray-600'> {movie.isShow ? 'Showing now' : 'Comming soon'}</span>
+            </div>
+            <div>Description:
+              <div className='text-base text-gray-600'>{movie.description}</div>
+            </div>
           </div>
         </div>
 
         {/* right side */}
         <div className='col-span-4 -intro-y'>
-          <SessionMovie />
+          <SessionMovie movieId={movie.id} movieName={movie.name} />
         </div>
 
       </div>
 
-      <Modal isOpen={isOpen} onClose={() => onClose()} Component={Payment} props={props} />
+      <Modal isOpen={isOpen} onClose={() => onClose()}>
+        {
+          component === 'AUTH' && <AuthModal />
+        }
+        {
+          component === 'PAYMENT' && <Payment {...props} />
+        }
+      </Modal>
     </>
   );
 };

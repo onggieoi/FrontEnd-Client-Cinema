@@ -1,37 +1,51 @@
 import Head from 'next/head';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import DetailMovie from 'containers/MovieDetail';
 import { ModalProvider } from 'contexts/Modal';
-import { data } from 'dataEx';
+import Layout from 'containers/AppLayout';
+import { useMovieQuery } from 'graphql/generated';
+import Loader from 'components/Loading';
 
-const DetailPage = ({ movie }) => {
+const DetailPage = () => {
+  const router = useRouter();
+  const { data, loading, error } = useMovieQuery({
+    variables: {
+      id: Number(router.query?.id || -1),
+    }
+  });
+
+  if (error || data?.movie.error) {
+    router.push('/404');
+  }
+  console.log(data);
+
   return (
     <>
       <Head>
-        <title>UNKNOWN | {movie.title}</title>
+        <title>{data?.movie.movie?.name || 'UNKNOWN'}</title>
       </Head>
-      <ModalProvider>
-        <DetailMovie data={movie} />
-      </ModalProvider>
+      <Layout>
+        <ModalProvider>
+          {
+            loading && (
+              <div className='relative h-64'>
+                <div className='absolute' style={{ top: '50%', left: '50%' }}>
+                  <Loader />
+                </div>
+              </div>
+            )
+          }
+
+          {
+            data?.movie.movie && <DetailMovie movie={data.movie.movie} />
+          }
+
+        </ModalProvider>
+      </Layout>
     </>
   );
-}
-
-export async function getStaticPaths() {
-  const paths = data.map((item) => ({
-    params: { id: item.id },
-  }));
-
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps({ params }) {
-  const movie = data.find((item) => item.id == params.id);
-
-  return {
-    props: { movie }
-  }
 }
 
 export default DetailPage;

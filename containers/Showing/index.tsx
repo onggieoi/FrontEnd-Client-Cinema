@@ -6,7 +6,7 @@ import { useSearch } from 'helper/hooks';
 
 import { dataShowing } from 'dataEx';
 
-const PosPage = () => {
+const ShowingPage = () => {
   const [searchKey, setSearch] = useState('');
   const { dataResult } = useSearch(dataShowing, searchKey);
 
@@ -35,4 +35,4 @@ const PosPage = () => {
   );
 }
 
-export default PosPage;
+export default ShowingPage;

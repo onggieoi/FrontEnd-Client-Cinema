@@ -1,0 +1,11 @@
+query Seats ($options: InputGetSeat!) {
+  seats(options: $options)
+  {
+    seat {
+      id
+      name
+      percent
+    }
+    isAvailable
+  }
+}
