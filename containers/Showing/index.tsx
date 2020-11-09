@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Search } from 'react-feather';
 
 import Cards from 'components/ListCard';
 import { useSearch } from 'helper/hooks';
 
-import { dataShowing } from 'dataEx';
+type Props = {
+  data: any;
+}
 
-const ShowingPage = () => {
+const ShowingPage: React.FC<Props> = ({ data }) => {
   const [searchKey, setSearch] = useState('');
-  const { dataResult } = useSearch(dataShowing, searchKey);
+  const [dataInit, setData] = useState(data);
+
+  useEffect(() => {
+    const newData = data?.filter((item) => item.name.toLowerCase().includes(searchKey.toLowerCase()));
+    setData(newData);
+  }, [searchKey]);
+
+  useEffect(() => {
+    setData(data)
+  }, [data]);
 
   return (
     <>
@@ -29,7 +40,7 @@ const ShowingPage = () => {
 
       {/* Conttent */}
       <div className="grid grid-cols-12 gap-6 mt-5 intro-x">
-        <Cards data={dataResult} className='col-span-3' />
+        <Cards data={dataInit} className='col-span-3' />
       </div>
     </>
   );

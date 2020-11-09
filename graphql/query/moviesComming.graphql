@@ -1,0 +1,7 @@
+query MoviesComming {
+  moviesComming {
+    id
+    name
+    thumbnail
+  }
+}

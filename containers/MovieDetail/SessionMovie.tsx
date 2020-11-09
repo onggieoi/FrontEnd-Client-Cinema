@@ -7,6 +7,7 @@ import { ModalContext } from 'contexts/Modal';
 import { cinemaOptions } from 'helper/constant';
 import { useSessionQuery, ScheduleTime, Theater } from 'graphql/generated';
 import { AuthContext } from 'contexts/Auth';
+import { formatDate, formatTime } from 'helper/funtions';
 
 type Session = {
   __typename?: "ScheduleTime" | undefined;
@@ -34,7 +35,7 @@ const SessionMovie: React.FC<Props> = ({ movieId, movieName }) => {
       options: {
         movieId: movieId,
         location: cinema,
-        date: `${date.getDate()}/${date.getUTCMonth() + 1}/${date.getFullYear()}`,
+        date: formatDate(date),
       }
     }
   });
@@ -82,9 +83,11 @@ const SessionMovie: React.FC<Props> = ({ movieId, movieName }) => {
           <Calendar className='w-4 h-4' />
         </div>
         <DatePicker
+          dateFormat='dd/MM/yyyy'
           className='input border ml-1 w-32 z-40'
           selected={date}
           onChange={(dateChange: any) => setDate(dateChange)}
+          minDate={new Date()}
         />
 
         {/* Select */}
@@ -109,7 +112,7 @@ const SessionMovie: React.FC<Props> = ({ movieId, movieName }) => {
         {
           data?.getTimesSession.map((item) => (
             <button onClick={() => handleSession(item)} key={item.id} className={activeSessionStyle(item.id)}>
-              {item.time}
+              {formatTime(item.time)}
             </button>
           ))
         }

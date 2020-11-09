@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Card from 'components/Card';
-import { Movie } from 'graphql/generated';
 
 interface Props {
   data: any;
@@ -13,7 +12,7 @@ const Cards: React.FC<Props> = ({ data, className }) => {
     <>
       {
         data?.map((card) => (
-          <div key={card.id} className={`${className}`}>
+          <div key={card.id} className={`intro-x ${className}`}>
             <Card data={card} />
           </div>
         ))
