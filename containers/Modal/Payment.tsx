@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { NotificationManager } from 'react-notifications';
 import QRCode from 'qrcode.react';
 
 import ProcessBar from 'components/ProcessBar';
 
 import { useSeatsQuery, SeatRespone, Seat, useBuyTicketMutation } from 'graphql/generated';
+import { formatTime } from 'helper/funtions';
 
 type SeatType = {
   __typename?: "SeatRespone" | undefined;
@@ -42,6 +43,8 @@ const Payment: React.FC<Props> = ({
       }
     }
   });
+  const refetchCustom = useCallback(() => { setTimeout(async () => await refetch(), 200) }, [refetch]);
+
   const [buyTicket] = useBuyTicketMutation();
 
   useEffect(() => {
@@ -74,7 +77,7 @@ const Payment: React.FC<Props> = ({
     return 'border border-theme-100 w-full cursor-pointer'
   };
 
-  const handleBuyTicket = async () => {
+  const handleBuyTicket = () => {
     setLoader(true);
 
     setTimeout(async () => {
@@ -106,7 +109,7 @@ const Payment: React.FC<Props> = ({
         }
       });
 
-      await refetch();
+      refetchCustom();
 
       setChoosen([] as SeatType[]);
       setLoader(false);
@@ -156,7 +159,7 @@ const Payment: React.FC<Props> = ({
                 <div>Name: {movieName}</div>
                 <div>Price: {price} $</div>
                 <div>Seat: {item.seat?.name}</div>
-                <div>Date: {dateChoose} {session}</div>
+                <div>Date: {dateChoose} {formatTime(session)}</div>
                 <div className='mx-auto mt-5'>
                   <QRCode
                     value={'google.com'}
