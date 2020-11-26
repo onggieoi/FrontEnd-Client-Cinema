@@ -8,8 +8,13 @@ import CreditCard from 'components/CreditCard';
 import { useCustomerSignUpMutation } from 'graphql/generated';
 import { AuthContext } from 'contexts/Auth';
 import { ModalContext } from 'contexts/Modal';
+import { ISignUp } from 'interfaces';
 
-const SignUp = () => {
+type Props = {
+  initVal?: ISignUp;
+}
+
+const SignUp: React.FC<Props> = ({ initVal }) => {
   const [signUp] = useCustomerSignUpMutation();
   const { login } = useContext(AuthContext);
   const { onClose } = useContext(ModalContext);
@@ -17,7 +22,7 @@ const SignUp = () => {
   return (
     <>
       <Formik
-        initialValues={{
+        initialValues={initVal || {
           fullname: '',
           username: '',
           password: '',
@@ -27,23 +32,25 @@ const SignUp = () => {
         onSubmit={(values, actions) => {
           actions.setSubmitting(true);
           setTimeout(() => {
-            signUp({
-              variables: {
-                data: {
-                  ...values,
-                  creditCardNumber: Number(values.creditCardNumber),
-                  csv: Number(values.csv),
-                }
-              }
-            }).then(({ data }) => {
-              if (data?.customerSignUp?.customer) {
-                NotificationManager.success(`Welcome ${data.customerSignUp?.customer?.fullname}`, 'SignUp successful !');
-                login();
-                onClose();
-              } else {
-                actions.setStatus('Something went wrong, pls try again');
-              }
-            });
+            console.log(values);
+
+            // signUp({
+            //   variables: {
+            //     data: {
+            //       ...values,
+            //       creditCardNumber: Number(values.creditCardNumber),
+            //       csv: Number(values.csv),
+            //     }
+            //   }
+            // }).then(({ data }) => {
+            //   if (data?.customerSignUp?.customer) {
+            //     NotificationManager.success(`Welcome ${data.customerSignUp?.customer?.fullname}`, 'SignUp successful !');
+            //     login();
+            //     onClose();
+            //   } else {
+            //     actions.setStatus('Something went wrong, pls try again');
+            //   }
+            // });
             actions.setSubmitting(false);
           }, 1000);
         }}
@@ -73,7 +80,7 @@ const SignUp = () => {
             <button type="submit" disabled={isSubmitting}
               className="button inline-block bg-theme-100 text-white mt-5 py-3 text-lg font-bold">
               Submit
-            {isSubmitting && <img src="/oval.svg" className='w-4 h-4 ml-2 inline-block' />}
+              {isSubmitting && <img src="/oval.svg" className='w-4 h-4 ml-2 inline-block' />}
             </button>
           </Form>
         )}

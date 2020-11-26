@@ -8,6 +8,7 @@ import { ModalContext } from 'contexts/Modal';
 import { Movie, Maybe, Image } from 'graphql/generated';
 import Payment from 'containers/Modal/Payment';
 import AuthModal from 'containers/Modal/Auth';
+import { CountryOptions, GenreOptions } from 'helper/constant';
 
 type Props = {
   movie: {
@@ -23,6 +24,21 @@ type Props = {
 
 const DetailMovie: React.FC<Props> = ({ movie }) => {
   const { isOpen, onClose, props, component } = useContext(ModalContext);
+
+  const countryFormat = () => {
+    const country = CountryOptions.find((item) => item.value === movie.country);
+    if (country) return country.label;
+
+    return '';
+  }
+
+  const typeFormat = () => {
+    const types = movie.type.split(',').map((type) => GenreOptions.find((genre) => genre.value === type));
+
+    if (types) return types.map(type => type?.label).join(' ');
+
+    return '';
+  }
 
   return (
     <>
@@ -70,13 +86,13 @@ const DetailMovie: React.FC<Props> = ({ movie }) => {
               <span className='text-gray-600'> {movie.producer}</span>
             </div>
             <div>Genre:
-              <span className='text-gray-600'> {movie.type}</span>
+              <span className='text-gray-600'> {typeFormat()}</span>
             </div>
             <div>Director:
               <span className='text-gray-600'> {movie.director}</span>
             </div>
             <div>Language:
-              <span className='text-gray-600'> {movie.country}</span>
+              <span className='text-gray-600'> {countryFormat()}</span>
             </div>
             <div>Status:
               <span className='text-gray-600'> {movie.isShow ? 'Showing now' : 'Comming soon'}</span>

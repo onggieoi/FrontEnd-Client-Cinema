@@ -15,3 +15,12 @@ export interface Possition {
   name: string;
   status: boolean;
 }
+
+export interface ISignUp {
+  id?: number;
+  fullname: string,
+  username: string,
+  password: string,
+  creditCardNumber: string,
+  csv: string,
+}

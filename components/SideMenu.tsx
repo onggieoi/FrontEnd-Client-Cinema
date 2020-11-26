@@ -7,6 +7,7 @@ import {
   Activity,
   Film,
   LogIn,
+  Settings,
 } from 'react-feather';
 
 import AuthModal from 'containers/Modal/Auth';
@@ -75,14 +76,25 @@ const SideMenu: React.FC = () => {
 
         {
           isAuth ? (
-            <button onClick={async () => await logout()} className='focus:outline-none'>
-              <div className='side-menu'>
-                <div className="side-menu__icon">
-                  <LogOut />
+            <>
+              {/* <div className='cursor-pointer'>
+                <Link href='/profile'>
+                  <div className={`side-menu ${activeClass('/profile')}`}>
+                    <div className="side-menu__icon"> <Settings /> </div>
+                    <div className="side-menu__title"> Profile </div>
+                  </div>
+                </Link>
+              </div> */}
+
+              <button onClick={async () => await logout()} className='focus:outline-none'>
+                <div className='side-menu'>
+                  <div className="side-menu__icon">
+                    <LogOut />
+                  </div>
+                  <div className="side-menu__title"> Logout </div>
                 </div>
-                <div className="side-menu__title"> Logout </div>
-              </div>
-            </button>
+              </button>
+            </>
           ) : (
               <button onClick={handleLogin} className='focus:outline-none'>
                 <div className='side-menu'>
