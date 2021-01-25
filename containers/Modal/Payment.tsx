@@ -43,6 +43,11 @@ const Payment: React.FC<Props> = ({
       }
     }
   });
+  if (data) {
+    console.log(data);
+
+  }
+
   const refetchCustom = useCallback(() => { setTimeout(async () => await refetch(), 200) }, [refetch]);
 
   const [buyTicket] = useBuyTicketMutation();
@@ -50,7 +55,7 @@ const Payment: React.FC<Props> = ({
   useEffect(() => {
     let totalRs = 0;
     choosen.forEach((item) => {
-      totalRs += ((100 - (item.seat?.percent || 0)) * price) / 100;
+      totalRs += ((100 + (item.seat?.percent || 0)) * price) / 100;
     });
     setTotal(totalRs);
   }, [choosen]);
@@ -88,13 +93,13 @@ const Payment: React.FC<Props> = ({
               location,
               seatId: item.seat?.id || -1,
               scheduleTimeId,
-              price: ((100 - (item.seat?.percent || 0)) * price) / 100,
+              price: ((100 + (item.seat?.percent || 0)) * price) / 100,
             }
           }
         });
 
         NotificationManager.success(
-          `Seat: ${item.seat?.name} - ${((100 - (item.seat?.percent || 0)) * price) / 100} $`,
+          `Seat: ${item.seat?.name} - ${((100 + (item.seat?.percent || 0)) * price) / 100} $`,
           'Buy Ticket Successful !',
           4000,
           () => {
@@ -104,7 +109,7 @@ const Payment: React.FC<Props> = ({
         if (!result.data?.buyTicket) {
           console.log('somthing wrong!');
           NotificationManager.error(
-            `Seat: ${item.seat?.name} - ${((100 - (item.seat?.percent || 0)) * price) / 100} $`,
+            `Seat: ${item.seat?.name} - ${((100 + (item.seat?.percent || 0)) * price) / 100} $`,
             'Something wrong !');
         }
       });
@@ -157,7 +162,7 @@ const Payment: React.FC<Props> = ({
                 <div>Cinema: {cinema}</div>
                 <div>Room: {room}</div>
                 <div>Name: {movieName}</div>
-                <div>Price: {price} $</div>
+                <div>Price: {((100 + (item.seat?.percent || 0)) * price) / 100} $</div>
                 <div>Seat: {item.seat?.name}</div>
                 <div>Date: {dateChoose} {formatTime(session)}</div>
                 <div className='mx-auto mt-5'>
